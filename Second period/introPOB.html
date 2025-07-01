@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto nuevo</title>
+</head>
+
+<body>
+    <script>
+        //Se hizo un objeto al ponerle los corchetes. En el apunte se explica mejor.
+        let reloj = {
+            //En los objetos no funciona lo de las variables globales, ya que las propiedades no están para todo.
+            //Estas son puras propiedades.
+            horas: 18,
+            minutos: 1,
+            segundos: 56,
+            //Creamos un array
+            colores: ['Azul', 'Negro', blanco = {
+                tono: 1,
+                intensidad: 6
+            }, 'Amarillo', 'Rojo'],
+            marca: {
+                nombre: 'Timex',
+                slogan: 'Precisión atómica'
+            },
+            //Este es un método.
+            avanzar: function() {
+                this.segundos++;
+                if (this.segundos == 60) {
+                    this.segundos = 0;
+                    this.minutos++;
+                    if (this.minutos == 60) {
+                        this.minutos = 0;
+                        this.horas++;
+                        if (this.horas == 24) {
+                            this.horas = 0;
+                        }
+                    }
+                }
+                //Acción, ya hace algo
+                //segundos++;
+            },
+            formato: function(valor) {
+                //Aquí lo que hicimos fue convertir el valor a cadena, ya que se estaba tomando como si fuera un número
+                valor = valor.toString();
+                if (valor.length < 2)
+                    return "0" + valor;
+                else
+                    return valor;
+            },
+            mostrarHora: function() {
+                return this.formato(this.horas) + ":" + this.formato(this.minutos) + ":" + this.formato(this.segundos);
+            }
+        };
+        console.log(reloj);
+        //Ya estoy accediendo. Aquí llamé al objeto y después del punto puse la propiedad que quería que se mostrara.
+        alert(reloj.segundos);
+        alert(reloj['segundos']);
+        //Aquí llamamos a uno de lo elementos del array, y el índice es 2, pero el elemento es 3.
+        alert(reloj.colores[2]);
+        let prop = 'colores'; //Aquí a la variable se le asignó esta propiedad que está dentro del objeto reloj.
+        console.log(reloj[prop][2]['intensidad']);
+        //Aquí llamamos a la función, y se pone reloj antes porque está dentro de la variable.
+        reloj.avanzar();
+
+        //Notación de puntos
+        alert(reloj.marca.slogan);
+        //Notación de corchetes
+        alert(reloj['marca']['slogan']); //Para JS las comillas simples o dobles son lo mismo :)
+        //Aquí cambiamos el valor de horas
+        reloj.horas = 17;
+        reloj.marca.nombre = "Rolex";
+        //Añadimos un objeto nuevo, que es el material y dentro ponemos las propiedades con sus respectivos valores.
+        reloj['material'] = {
+            nombre: 'Oro',
+            calidad: '14k'
+        };
+        /*reloj['material']={};
+        reloj['material']['nombre'] = "Oro";
+        reloj['material']['calidad'] = "14k";*/
+        console.log(reloj);
+        //Creo nueva propiedad.
+        reloj['alarma'] = function() {
+            alert("ring, ring")
+        };
+        reloj['alarma']();
+
+        //Aquí creamos una propiedad
+        function crearP() {
+            reloj[document.getElementById("nomP").value] = document.getElementById("valP").value;
+            console.clear();
+            console.log(reloj);
+        }
+
+        //Función para que se vaya moviendo de un segundo en uno
+        function tick() {
+            reloj.avanzar();
+            document.getElementById("hora").innerText = reloj.mostrarHora();
+        }
+    </script>
+    <label>Nombre propiedad <input type="text" id="nomP"</label>
+    <label>Valor propiedad<input type="text" id="valP"</label><br>
+    <button onclick="crearP()">Crear propiedad</button><br>
+    <button onclick="tick()">Tick</button><br>
+    <span id="hora"></span>
+</body>
+
+</html>

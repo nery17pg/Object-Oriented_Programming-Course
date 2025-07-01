@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen segunda parcial</title>
+</head>
+<body>
+    <script>
+        
+/*Hacer una página HTML que haga lo siguiente:
+
+Declarar la clase CuentaBancaria que contenga las siguientes propiedades nombreTitular (string), numeroCuenta(int) y saldo(float). 
+Las propiedades deben usar el encapsulamiento y la protección de tipos de datos. La propiedad saldo debe ser de sólo lectura.  
+El constructor debe solicitar los valores para las 3 propiedades y proteger los tipos de datos. Agregar los métodos deposito(valor) 
+para incrementar el saldo,
+retiro(valor) para disminuir el saldo. (3 puntos)*/
+class CuentaBancaria{
+    #_nombreTitular;
+    #_numeroCuenta;
+    #_saldo;
+    #_almacenar=new Array(3);
+    constructor(nomT,cta,sal){
+        this.#_nombreTitular=nomT.toString();
+
+        if(!isNaN(parseInt(cta))){
+            this.#_numeroCuenta=parseInt(cta);
+        }
+        
+        if(!isNaN(parseFloat(sal))){
+            this.#_saldo=parseFloat(sal);
+        }
+    }
+
+    get nombreTitular(){
+        return this.#_nombreTitular;
+    }
+    set nombreTitular(value) {
+        this.#_nombreTitular = value.toString();
+    }
+
+    get numeroCuenta(){
+        return this.#_numeroCuenta;
+    }
+    set numeroCuenta(value) {
+        if (!isNaN(parseInt(value))) 
+           this.#_numeroCuenta = parseInt(value);
+    }
+
+    get saldo(){
+        return this.#_saldo;
+    }
+
+    deposito=function(value){
+            return this.#_saldo+=value;
+        }
+    retiro=function(value){
+        return this.#_saldo-=value;
+    }
+
+    get nombreTitular1(){
+            return this.#_almacenar[0];
+        }
+        set nombreTitular1(value){
+            this.#_almacenar[0] = value.toString();
+        }
+        get numeroCuenta1(){
+            return this.#_almacenar[1];
+        }
+        set numeroCuenta1(value){
+            if (!isNaN(parseInt(value))){ 
+           this.#_almacenar[1] = parseInt(value);
+            }
+        }
+        get saldo1(){
+            return this.#_almacenar[2];
+        }
+        set saldo1(value){
+            if (!isNaN(parseFloat(value))){ 
+                    this.#_almacenar[2]=parseFloat(sal);
+                }
+            }
+        }
+    /*nuevaP =function(value) {
+            obj1[document.getElementById("nomP").value] = document.getElementById("valP").value;
+            console.clear();
+            console.log(cuenta1);
+        }*/
+
+
+
+let cuenta1=new CuentaBancaria("Nereyda",20192956,4800);
+console.log(cuenta1);
+console.log(cuenta1.deposito());
+console.log(cuenta1.retiro());
+console.log(nuevaP());
+
+let obj1 = new CuentaBancaria("El barto");
+console.log(obj1);
+
+function crearP() {
+            obj1[document.getElementById("nomP").value] = document.getElementById("valP").value;
+            console.clear();
+            console.log(cuenta1);
+        }
+
+/*Crear un array para almacenar cuentas bancarias, pedir el nombre del titular, el número de cuenta y el saldo (Usar un input 
+parar cada uno de los elementos), instanciar la clase y almacenarla en el array cada que se presione un botón. (2 puntos)*/
+
+
+function almacenar() {
+    let num = parseInt(document.getElementById("caja1").value);
+
+    let cuentaBancarias = [3]; //Declarar la variable de datos como tipo vector
+    let titular = "";
+    let 
+        promedio = 0;
+    for (let i = 0; i < num; i++) { //Recorrer el vector y pedir el valor
+        datos[i] = parseFloat(prompt("Ingresa el valor: "));
+    }
+
+    for (let j = 0; j < num; j++) { //Recorrer vector e imprimir
+        document.write("Valor ", j, ": ", datos[j], "<br>");
+        suma = suma + datos[j]; //Sumar los valores
+    }
+
+    promedio = suma / num; //Obtener el promedio
+    document.write("Suma es: ", suma, "<br>", "El promedio es: ", promedio); //Se imprime la suma y el promedio
+
+}
+
+/*Al presionar un botón se debe agregar una propiedad nueva a la última cuenta agregada al array, para esto se debe solicitar 
+el nombre de la propiedad y el valor de la misma (En un input para cada uno). (2 puntos)*/
+
+
+
+/*Al presionar un botón se bebe generar la vista del contenido del array; esto es, dentro de un div generar un div por cada elemento 
+del array y dentro del mismo poner el nombre y valor de todas las propiedades del
+elemento. (3 puntos)*/
+function tablas() {
+                    let todas = "";
+                    for (let j = 1; j <= 10; j++) {
+                        todas += "Tabla de multiplicar del " + j + "\n";
+                        for (let k = 1; k <= 10; k++) {
+                            let resultado4 = parseInt(j * k);
+                            todas += j + "x" + k + "=" + resultado4 + "\n";
+                        }
+                    }
+                    document.getElementById("divObjetos").innerText = todas;
+                }
+
+                function borrar4() {
+                    document.getElementById("divObjetos").innerText = "";
+                }
+
+    </script>
+    <label>Nombre del titular <input type="text" id="nomTitular"</label>
+    <label>Número de cuenta <input type="number" id="numeroCta"</label>
+    <label>Sueldo <input type="number" id="numeroCta"</label>
+    <button onclick="almacenar()">Almacenar</button><br><br><br>
+
+    <label>Nombre propiedad <input type="text" id="nomP"</label>
+    <label>Valor propiedad <input type="text" id="valP"</label><br>
+    <button onclick="crearP()">Crear propiedad</button><br>
+
+    <div id="divObjetos"></div>
+
+</body>
+</html>

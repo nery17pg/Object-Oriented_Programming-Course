@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clases</title>
+</head>
+
+<body>
+    <script>
+        function Clase(nom) {
+            this.nombre = nom;
+            this.funcion = function() {};
+        }
+        //Aquí se toma todo lo de la función de la clase y se le agrega al obj1.
+        //obj1 y obj2 son las instancias
+        let obj1 = new Clase("El barto");
+        let obj2 = new Clase("Objeto 2");
+        //En este caso se modifica lo del obj1 especificamente, ya que se le agrega algo, es decir, no se le modifica nada a la clase.
+        //obj1.nombre = "El barto";
+        console.log(obj1);
+        console.log(obj2);
+
+        //Creamos el objeto y no tiene nada.
+        let obj3 = new Object();
+        obj3.nombre = "Shrek";
+        //Aquí estamos creando el método y no hace nada
+        obj3.hablar = function() {
+            //Aquí mandamos a llamar al nombre para que se lo sume a esto.
+            alert("Holi, " + this.nombre)
+        };
+        console.log(obj3);
+        //Aquí se llama la función y se pone obj3 ahuevo porque .hablar es exclusivo de
+        obj3.hablar();
+        //Crear clase reloj cada una con las propiedades del código anterior y con la instancia de 5pm y 2am
+
+        let obj4 = new Object({
+            nombre: "Anja",
+            volar: function() {}
+        });
+        console.clear();
+
+        //Este pedazo de código vendría siendo lo mismito, ya que se está direccionando a lo mismo que obj4. Entonces, las modificaciones que se
+        //hagan en obj4 será lo mismo que tenga obj5
+        let obj5 = Object.create(obj4);
+        console.log("nombre del obj4 " + obj4.nombre);
+        console.log("nombre del obj5 " + obj5.nombre);
+        obj5.nombre = "soy";
+        obj4.nombre = "sfdshchds";
+        console.log("nombre del obj4 " + obj4.nombre);
+        console.log("nombre del obj5 " + obj5.nombre);
+        /*console.log(obj5);
+        obj4.nombre = "Susanita";
+        console.log(obj4);
+        console.log(obj5.apellido);
+        console.log(obj4.apellido);*/
+
+        //NO ES FUNCIONAL
+        console.clear();
+        console.log(obj1);
+        obj1.nueva = 1;
+        console.log(obj1);
+        console.log(obj5);
+        let obj6 = Object(obj1);
+        console.log(obj5);
+        console.log(obj6);
+    </script>
+</body>
+
+</html>

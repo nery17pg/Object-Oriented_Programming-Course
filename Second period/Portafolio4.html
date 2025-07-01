@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio 4</title>
+</head>
+<body>
+    <script>
+    /*Hacer los siguientes códigos en un archivo js. Para hacer los ejercicios deben usar la creación de
+    clases con la cláusula class; para las propiedades deben usar setters y getters. También deben usar
+    el encapsulamiento y protección de tipos de datos en todas las propiedades, es decir éstas sólo
+    deben ser alcanzadas fuera de la clase con sus respectivos getters o setters (cuando aplique).*/
+
+    /*1. Crear una clase “Articulo” que contenga 2 propiedades, nombre(String) y
+    precioBase(Float). La clase debe devolver un “precioMenudeo” (que es 30% mayor que el
+    precioBase) y un “precioMayoreo” (que es 15% mayor que el precioBase). Evidentemente
+    el precioMenudeo y el precioMayoreo no pueden ser alterados desde fuera de la clase.*/
+    class Articulo{
+        #_nombre;
+        #_precioBase;
+        constructor(nom,pBase){
+            this.#_nombre=nom.toString();
+
+            if(!isNaN(parseFloat(pBase))){
+                this.#_precioBase=parseFloat(pBase);
+            }
+        }
+            
+        get nombre() { 
+            return this.#_nombre;
+        }
+        set nombre(value) {
+            this.#_nombre = value.toString();
+        }
+        get precioBase() { 
+            return this.#_precioBase;
+        }
+        set precioBase(value) {
+            if (!isNaN(parseFloat(value))) 
+                    this.#_precioBase = parseFloat(value);
+        }
+
+        get precioMenudeo(){ 
+            return this.#_precioBase*1.30;
+        }
+        get precioMayoreo(){
+            return this.#_precioBase*1.15;
+        }
+    }
+
+    let articulo1 = new Articulo("Shampoo", 80);
+    console.log(articulo1);    
+
+    /*2. Crear una clase “Alumno” que contenga: Número DeCuenta (Int), Nombre(String), un
+    array de longitud 3 para calificaciones(float entre 0-10). La clase debe devolver el
+    promedio final (que es el promedio de las 3 calificaciones). También debe contener un
+    método que indique si el alumno está aprobado (promedio final&gt;=6) o reprobado
+    regresando una string. El promedio final no puede ser modificado desde fuera de la clase.*/
+    class Alumno{
+        #_cta;
+        #_nom2;
+        #_calificaciones=new Array(3);
+        constructor(cta,nombre2,cal1,cal2,cal3){
+            if(!isNaN(parseInt(cta))){
+                this.#_cta=parseInt(cta);
+            }
+
+            this.#_nom2=nombre2.toString();
+
+            if(!isNaN(parseFloat(cal1))){
+                if(parseFloat(cal1)>=0 && parseFloat(cal1)<=10){
+                    this.#_calificaciones[0]=parseFloat(cal1);
+                }
+            }
+            
+            if(!isNaN(parseFloat(cal2))){
+                if(parseFloat(cal2)>=0 && parseFloat(cal2)<=10){
+                    this.#_calificaciones[1]=parseFloat(cal2);
+                }
+            }
+
+            if(!isNaN(parseFloat(cal3))){
+                if(parseFloat(cal3)>=0 && parseFloat(cal3)<=10){
+                    this.#_calificaciones[2]=parseFloat(cal3);
+                }
+            }
+        }
+
+        get numeroCuenta(){
+            return this.#_cta;
+        }
+        set numeroCuenta(value){
+            if(!isNaN(parseInt(value))){
+                this.#_cta=parseInt(value);
+            }
+        }
+        get nombre2(){
+            return this.#_nom2;
+        }
+        set nombre2(value){
+            this.#_nom2=value.toString();
+        }
+        get calif1(){
+            return this.#_calificaciones[0];
+        }
+        set calif1(value){
+            if(!isNaN(parseFloat(value))){
+                if(parseFloat(value)>=0 && parseFloat(value)<=10){
+                    this.#_calificaciones[0]=parseFloat(value);
+                }
+            }
+        }
+        get calif2(){
+            return this.#_calificaciones[1];
+        }
+        set calif2(value){
+            if(!isNaN(parseFloat(value))){
+                if(parseFloat(value)>=0 && parseFloat(value)<=10){
+                    this.#_calificaciones[1]=parseFloat(value);
+                }
+            }
+        }
+        get calif3(){
+            return this.#_calificaciones[2];
+        }
+        set calif3(value){
+            if(!isNaN(parseFloat(value))){
+                if(parseFloat(value)>=0 && parseFloat(value)<=10){
+                    this.#_calificaciones[2]=parseFloat(value);
+                }
+            }
+        }
+
+        get promedio(){
+            return (this.#_calificaciones[0]+this.#_calificaciones[1]+this.#_calificaciones[2])/3;
+        }
+
+        estatus=function(){ //MÉTODO
+            if(this.promedio>=6){
+            return "Aprobado";
+        }
+        else{
+            return "Reprobado";
+            }
+        }
+    }
+
+    let a=new Alumno(20192956,"La Nery",10,9,9.4);
+    console.log(a);
+    console.log(a.estatus());
+
+    /*3. Crear una clase “Rectángulo” que tenga las propiedades “Base”(Float) y “Altura”(Float). La
+    clase debe tener un método para el cálculo del perímetro y otro para el cálculo del área.*/
+    class Rectangulo{
+        #_base;
+        #_altura;
+        constructor(rBase,rAlt){
+            if(!isNaN(parseFloat(rBase))){
+                this.#_base=parseFloat(rBase);
+            }
+            if(!isNaN(parseFloat(rAlt))){
+                this.#_altura=parseFloat(rAlt);
+            }
+        }
+
+        get base() { 
+            return this.#_base;
+        }
+        set base(value) {
+            if(!isNaN(parseFloat(value))){
+                this.#_base=parseFloat(value);
+            }
+        }
+        get altura() { 
+            return this.#_altura;
+        }
+        set altura(value) {
+            if(!isNaN(parseFloat(value))){
+                this.#_altura=parseFloat(value);
+            }
+        }
+
+        perimetro=function(){
+            return (this.#_base*2)+(this.#_altura*2);
+        }
+        area=function(){
+            return this.#_base*this.#_altura;
+        }
+    }
+
+    let rectangulo1=new Rectangulo(5,10);
+    console.log(rectangulo1);
+    console.log(rectangulo1.perimetro());
+    console.log(rectangulo1.area());
+
+    /*4. Crear una clase “Persona” que tenga 2 propiedades: “Nombre”(String) y
+    “FechaDeNacimiento”(Objeto creado a partir de la clase “Fecha” que contiene 3
+    propiedades: “Dia”(int de 1-31), “Mes”(Int de 1-12) y “Año”(Int de 1 a 9999)). Hacer un
+    método “Edad” en el que se introduzca una fecha(Objeto de la clase Fecha) y devuelva la
+    edad a partir de la fecha de nacimiento y la fecha introducida en el método.*/
+    class Fecha{
+        #_dia;
+        #_mes;
+        #_anio;
+        constructor(dia,mes,anio){
+            if(!isNaN(parseInt(dia))){
+                if(parseInt(dia)>=1 && parseInt(dia)<=31){
+                    this.#_dia=parseInt(dia);
+                }
+            }
+            if(!isNaN(parseInt(mes))){
+                if(parseInt(mes)>=1 && parseInt(mes)<=12){
+                    this.#_mes=parseInt(mes);
+                }
+            }
+            if(!isNaN(parseInt(anio))){
+                if(parseInt(anio)>=1 && parseInt(anio)<=9999){
+                    this.#_anio=parseInt(anio);
+                }
+            }
+        }
+
+        get dia(){
+            return this.#_dia;
+        }
+        set dia(value){
+            if(!isNaN(parseInt(value))){
+                if(parseInt(value)>=1 && parseInt(value)<=31){
+                    this.#_dia=parseInt(value);
+                }
+            }
+        }
+        get mes(){
+            return this.#_mes;
+        }
+        set mes(value){
+            if(!isNaN(parseInt(value))){
+                if(parseInt(value)>=1 && parseInt(value)<=12){
+                    this.#_mes=parseInt(value);
+                }
+            }
+        }
+        get anio(){
+            return this.#_anio;
+        }
+        set anio(value){
+            if(!isNaN(parseInt(value))){
+                if(parseInt(value)>=1 && parseInt(value)<=9999){
+                    this.#_anio=parseInt(value);
+                }
+            }
+        }
+    }
+
+    class Persona{
+        #_nom;
+        #_fNac;
+        constructor(nom,fechNac){
+            this.#_nom=nom.toString();
+            this.#_fNac=fechNac;
+        }
+
+        get nombre(){
+            return this.#_nom;
+        }
+        set nombre(value){
+            this.#_nom=value.toString();
+        }
+        get fechaNacimiento(){
+            return this.#_fNac;
+        }
+        set fechaNacimiento(value){
+            this.#_fNac=value;
+        }
+
+        edad=function(fecha){
+            let e=fecha.anio-this.fechaNacimiento.anio;
+            if(fecha.mes<this.fechaNacimiento.mes){
+                e--;
+            }
+            else{
+                if(fecha.mes==this.fechaNacimiento.mes&&fecha.dia<this.fechaNacimiento.dia){
+                    e--;
+                }
+            }
+            return e;
+        }
+    }
+    let p=new Persona("Nereyda",new Fecha(17,11,2004));
+    console.log(p.edad(new Fecha(25,4,2024)));
+
+    </script>
+</body>
+</html>

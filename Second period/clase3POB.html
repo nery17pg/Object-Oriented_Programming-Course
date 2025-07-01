@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipos POB</title>
+</head>
+
+<body>
+    <script>
+        //PROTOTIPOS DE OBJETOS - CLASE 17 DE ABRIL DE 2024
+        //CLASE DE PERSONA QUE TIENE TRES PROPIEDADES
+        function Persona(nom, ap1, ap2) {
+            this.nombre = nom;
+            this.apellido1 = ap1;
+            this.apellido2 = ap2;
+
+            /*this.nombreCompleto = function() {
+                return this.nombre + " " + this.apellido1 + " " + this.apellido2;*/
+        }
+
+        Persona.prototype.nombreCompleto = function() { //Aquí se le aplica a todo y se considera BUENA PRÁCTICA
+            return this.nombre + " " + this.apellido1 + " " + this.apellido2;
+        }
+        //SE CREA UN NUEVO OBJETO DE LA CLASE (CONSTRUCTOR) "PERSONA"
+        Persona.prototype.saludo = function() {
+            alert('Holi, ' + "soy " + this.nombre);
+        }
+
+
+        //ESTO ES EXACTAMENTE LO MISMO QUE ARRIBA, PERO SE LE DICE A TODA LA CLASE "Persona", es decir, aparece en persona1 y persona2
+        /*Persona.prototype.saludo = function() {
+            alert("Holaaa");
+        };*/
+        let persona1 = new Persona('Nereyda', 'Pérez', 'González');
+        let persona2 = new Persona('Karol', 'Johnston', 'Navarro');
+
+        console.log(persona1);
+        console.log(persona2);
+        console.log(persona1.nombreCompleto() + "\n" + persona2.nombreCompleto());
+
+        persona1.saludo(); //Aquí llamamos a las funciones para que nos salgan los saluditos
+        persona2.saludo();
+
+        /*console.log(persona1.saludo);
+        console.log(persona2.saludo);
+
+        //VAMOS A LEER EL CONSTRUCTOR DE "persona1"
+        //El prototipo del constructor es la clase para JS
+        //CICLO SIN FIN 
+        console.log(persona1.constructor); //Lo que manda es toda la función de Persona
+        console.log(persona1.constructor.prototype); //Los prototipos están en las clases no en las instancias*/
+    </script>
+</body>
+
+</html>

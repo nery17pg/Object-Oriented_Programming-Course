@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MANscript 2015</title>
+</head>
+
+<body>
+    <script>
+        //VERSIÓN FÁCIL PARA CREAR CLASE CON SU CONSTRUCTOR
+        class Persona {
+            constructor(nom, ap1, ap2) { //Aquí ponemos las variables 
+                this._nombre = nom; //Con esto solo se puede tocar dentro de la clase, es decir, miembro privado
+                this._apellido1 = ap1;
+                this._apellido2 = ap2;
+            }
+            get nombre() { //ACTUALIZACIONES de nombre y apellidos
+                return this._nombre;
+            }
+            set nombre(value) {
+                this._nombre = value;
+            }
+            get apellido1() {
+                return this._apellido1;
+            }
+            set apellido1(value) {
+                this._apellido1 = value;
+            }
+            get apellido2() { //Este apellido no podemos cambiarlo
+                return this._apellido2;
+            }
+
+
+            nombreCompleto() { //Aquí creamos el método
+                return this.nombre + " " + this.apellido1 + " " + this.apellido2;
+            }
+            saludo() { //Aquí creamos otro método
+                alert("Hola, soy " + this.nombre);
+            }
+        }
+
+        class Alumno extends Persona { //Creamos una clase 'Alumno' que será extensión de la clase 'Persona', es decir, hereda lo que tenga 'Persona'
+            #_cuenta;
+            constructor(cta, esc, cal1, cal2, cal3, nomA, ap1A, ap2A) { //Aquí se acomodan de acuerdo al orden como pusismos las variables
+                super(nomA, ap1A, ap2A) //'super()' me regresa todos los datos de arriba como si fueran de esta clase
+                this.#_cuenta = cta; //Aquí solo restringimos a cuenta
+                this.escuela = esc;
+                this.calif1 = cal1;
+                this.calif2 = cal2;
+                this.calif3 = cal3;
+            }
+            get cuenta() { //Actualizamos el número de cuenta
+                return this._cuenta;
+            }
+            set cuenta(value) {
+                if (!isNaN(parseInt(value))) //Si no se puede convertir a un valor entero, no se va a actualizar el valor del número de cuenta
+                    this._cuenta = parseInt(value);
+            }
+
+            promedio() { //Creamos un método para la clase 'Alumno'
+                return (this.calif1 + this.calif2 + this.calif3) / 3;
+            }
+        }
+        let persona1 = new Persona('Nereyda', 'Pérez', 'González');
+        persona1.nombre = "Juanito"; //Aquí se le asignan los valores a lo que hicimos con "._"
+        persona1.apellido1 = "Muñoz";
+        persona1.apellido2 = "Johnston";
+        console.log(persona1);
+        console.log(persona1.nombreCompleto()); //Siemore se debe de poner el paréntesis porque sino manda todo el código
+        persona1.saludo(); //Aquí llamamos al saludito
+
+        let al = new Alumno(20192956, 'Telemática', 10, 9.2, 9.6, 'Nereyda', 'Pérez', 'González'); //Aquí se acomodan de acuerdo al orden como pusismos los valores
+        al.cuenta = "58"; //Sí  //al.cuenta="erd" No
+        console.log(al);
+        console.log(al.nombreCompleto()); //Llamamos al nombre completo del alumno
+        al.saludo(); //Llamamos al saludo
+        console.log(al.promedio()); //Llamamos al promedio
+    </script>
+</body>
+
+</html>

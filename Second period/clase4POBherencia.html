@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herencia de objetos</title>
+</head>
+
+<body>
+    <script>
+        function Persona(nom, ap1, ap2) {
+            this.nombre = nom;
+            this.apellido1 = ap1;
+            this.apellido2 = ap2;
+        };
+        Persona.prototype.nombreCompleto = function() {
+            return this.nombre + " " + this.apellido1 + " " + this.apellido2;
+        };
+        Persona.prototype.saludo = function() {
+            alert('Holi, ' + "soy " + this.nombre);
+        }
+
+        //CREAMOS UNA NUEVA CLASE
+        function Alumno(nomA, ap1A, ap2A, cta, esc, cal1, cal2, cal3) {
+            //Influye el orden, no el nombre. Pero el nombre debe de ser el mismo en la función y la llamada
+            Persona.call(this, nomA, ap1A, ap2A); //Llamada al constructor del objeto base y todos los argumentos se separan con comas "," (this es argumento)
+            this.numeroCuenta = cta;
+            this.escuela = esc;
+            this.calif1 = cal1;
+            this.calif2 = cal2;
+            this.calif3 = cal3;
+        }
+
+        //HERENCIA PROTOTÍPICA
+        Alumno.prototype = Object.create(Persona.prototype);
+        Alumno.prototype.constructor = Alumno; //Si hiciera una segunda clase que se herede de la clase Alumno y no tenemos esto no podríamos heredar lo que contiene Persona
+        Alumno.prototype.promedio = function() {
+            return (this.calif1 + this.calif2 + this.calif3) / 3;
+        };
+        //Aquí creamos la variable que contiene todos los datos
+        let al = new Alumno('Nereyda', 'Pérez', 'González', 20192956, 'Telemática', 10, 9.2, 9.6);
+        console.log(al); //Aquí la ponemos en la consolita
+        console.log(al.nombreCompleto());
+        console.log(al.promedio());
+    </script>
+</body>
+
+</html>
