@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>Sexo <select id="sexo"><option value="h" selected>Hombre</option><option value="m">Mujer</option></select></label><br>
+    <label>Edad <input type="number" id="edad"></label><br>
+    <button onclick="edad()">Aceptar</button>
+    <h1 id="mensaje"></h1>
+    <script>
+        function edad() {
+            let e = parseInt(document.getElementById("edad").value);
+            if (isNaN(e) || e < 0) {
+                alert("Edad no válida");
+                document.getElementById("edad").select();
+                return;
+            }
+            let s = document.getElementById("sexo").value;
+            if (e >= 18) {
+                if (s == "h")
+                    document.getElementById("mensaje").innerText = "Hola, señor";
+                else
+                    document.getElementById("mensaje").innerText = "Hola, señora";
+            } else {
+                if (s == "h")
+                    document.getElementById("mensaje").innerText = "Hola, niño";
+                else
+                    document.getElementById("mensaje").innerText = "Hola, niña";
+            }
+
+        }
+    </script>
+</body>
+
+</html>

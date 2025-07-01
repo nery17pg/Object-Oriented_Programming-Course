@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>Número inicial <input type="number" id="ni"></label><br><br>
+    <label>Número final <input type="number" id="nf"></label><br><br>
+    <label>Intérvalo <input type="number" id="iv"></label>
+    <button onclick="serie()">Aceptar</button>
+    <!--"div" es un estilo de caja en la cual se ingresa información y se va cambiando cada que nosotros lo solicitemos.-->
+    <div id="divShow"></div>
+</body>
+<script>
+    function serie() {
+        let ni = parseInt(document.getElementById("ni").value);
+        let nf = parseInt(document.getElementById("nf").value);
+        //Math.abs es para el valor absoluto.
+        let iv = Math.abs(parseInt(document.getElementById("iv").value));
+        /*Esta parte es para que el intervalo negativo también funcione.
+        if (iv < 0)
+            iv *= -1;*/
+        let s = "";
+        if (ni < nf)
+            for (let i = ni; i <= nf; i += iv) {
+                //"s +" es para que en la misma cadena se pongan todos los resultados y posteriormente se pone todo en el div.
+                s += i + " ";
+            }
+        else
+            for (let i = ni; i >= nf; i -= iv) {
+                s += i + " ";
+            }
+        document.getElementById("divShow").innerText = s;
+    }
+</script>
+
+</html>

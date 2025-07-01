@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <label>Ingrese la cantidad de elementos <input type="number" id="datos"></label>
+    <button onclick="datos()">Crear array</button>
+    <div id="res"></div>
+</head>
+
+<body>
+    <script>
+        function datos() {
+            let datos = parseInt(document.getElementById("datos").value);
+            let arreglo = new Array(datos);
+
+            document.getElementById("res").innerHTML = "";
+            //alert(arreglo.length);
+
+            for (let i = 0; i < arreglo.length; i++) {
+                //La "i" aquí es la variable dentro del ciclo
+                arreglo[i] = prompt("Escribe algo:");
+                document.getElementById("res").innerHTML += arreglo[i] + "<br>";
+            }
+
+        }
+
+
+        //Variable arreglo y tiene 4 valores guardados en ella
+        //let arreglo = new Array(44, 22, 11, 6);
+        //Otras formas de definir un vector son: 
+        // let arreglo = Array(44,22,11,6);
+        // let arreglo=[44,22,11,6];
+
+        //Variable arreglos vacíos
+        //Este arreglo está para una capacidad de 4 elementos sin definir
+        //let arreglo1 = new Array(4);
+        //Es un array sin elementos
+        //let arreglo1=[]
+
+        //alert(arreglo[10]);
+        //alert(arreglo);
+        //Se reservan los lugares de manera undefined
+        //arreglo[7] = 3;
+        //Esta posición está undefined
+        //alert(arreglo[6]);
+
+        //let arreglo = Array("lol", 12);
+        //Este es para que me aparezca todo en ciclo, el más conveniente de usar es for. Aquí es cuando sé cuántos elementos hay
+        /*for (let i = 0; i < 10; i++) {
+            alert(arreglo[i]);
+        }*/
+
+        //Este es la manera en la que se usa el ciclo cuando no conocemos la longitud del array
+        /*for (let i = 0; i < arreglo.length; i++) {
+            alert(arreglo[i]);
+        }*/
+    </script>
+</body>
+
+</html>

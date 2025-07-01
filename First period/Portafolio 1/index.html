@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #11091a;
+        }
+        
+        #Everything {
+            background-color: #bab195;
+            text-align: center;
+            margin-left: 300px;
+            margin-right: 300px;
+        }
+        
+        p {
+            font-family: 'Cabin', sans-serif;
+            font-weight: 300;
+            line-height: 1.3em;
+        }
+        
+        #Letritas {
+            font-family: 'Cabin', sans-serif;
+            font-weight: 300;
+            line-height: 1.3em;
+        }
+        
+        .botoncitos {
+            font-size: 15px;
+            color: black;
+            background-color: #e8d18e;
+            border-color: #626970;
+            border-width: 3px;
+            border-style: solid;
+        }
+        
+        h1 {
+            color: #2f2f4d;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 900;
+        }
+        
+        h2 {
+            color: #626970;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="Everything">
+        <br>
+        <h1>Portafolio 1</h1>
+        <p>Alumna: Pérez González Nereyda Celestina</p>
+        <hr>
+
+        <!--1. Convertir millas náuticas a metros (1 milla náutica es igual a 1852 m)-->
+        <h2>1) Millas náuticas a metros</h2>
+        <div id="Letritas">
+            <label>Millas náuticas <input type="number" id="1millas"></label><br><br>
+            <button class="botoncitos" onclick="millasAMetros()">Aceptar</button>
+            <button class="botoncitos" onclick="borrar1()">Borrar</button><br><br>
+            <label>Metros <input type="number" id="1metros" readonly></label><br><br>
+
+            <script>
+                function millasAMetros() {
+                    let m = document.getElementById("1millas").value;
+                    let mt = m * 1852;
+                    document.getElementById("1metros").value = mt;
+                }
+
+                function borrar1() {
+                    document.getElementById("1millas").value = "";
+                    document.getElementById("1metros").value = "";
+                }
+            </script>
+
+            <hr>
+            <!--2. Pedir el precio de un artículo en pesos y el descuento en porcentaje (%); calcular el monto del descuento en pesos-->
+            <h2>2) Porcentaje de descuento</h2>
+            <label>Precio <input type="number" id="2precio"></label><br><br>
+            <label>Porcentaje (%) de descuento <input type="number" id="2descuento"></label><br><br>
+            <button class="botoncitos" onclick="porcentajeDescuento()">Aceptar</button>
+            <button class="botoncitos" onclick="borrar2()">Borrar</button><br><br>
+            <label>Descuento en pesos ($) <input type="number" id="2descuentoPesos" readonly></label><br><br>
+
+            <script>
+                function porcentajeDescuento() {
+                    let p = document.getElementById("2precio").value;
+                    let d = document.getElementById("2descuento").value;
+                    let pd = p * d / 100;
+                    document.getElementById("2descuentoPesos").value = pd;
+                }
+
+                function borrar2() {
+                    document.getElementById("2precio").value = "";
+                    document.getElementById("2descuento").value = "";
+                    document.getElementById("2descuentoPesos").value = "";
+                }
+            </script>
+
+            <hr>
+            <!--3. Pedir el precio de un artículo y el precio con descuento; mostrar el porcentaje (%) de descuento correspondiente.-->
+            <h2>3) Porcentaje de descuento correspondiente</h2>
+            <label>Precio ($) del artículo <input type="number" id="3articulo"></label><br><br>
+            <label>Precio ($) con descuento <input type="number" id="3descuento"></label><br><br>
+            <button class="botoncitos" onclick="porcentaje()">Calcular</button>
+            <button class="botoncitos" onclick="borrar3()">Borrar</button><br><br>
+            <label>Porcentaje (%) de descuento <input type="number" id="3porcentaje" readonly></label><br><br>
+
+            <script>
+                function porcentaje() {
+                    let art = document.getElementById("3articulo").value;
+                    let des = document.getElementById("3descuento").value;
+                    let por = (des * 100) / art;
+                    let pd3 = 100 - por;
+                    document.getElementById("3porcentaje").value = pd3;
+                }
+
+                function borrar3() {
+                    document.getElementById("3articulo").value = "";
+                    document.getElementById("3descuento").value = "";
+                    document.getElementById("3porcentaje").value = "";
+                }
+            </script>
+
+            <hr>
+            <!--4. Pedir 2 números y mostrar en pantalla el resultado de la suma, resta, multiplicación y división entre ellos.-->
+            <h2>4) Operaciones básicas</h2>
+            <label>Primer número <input type="number" id="4primerNumero"></label><br><br>
+            <label>Segundo número <input type="number" id="4segundoNumero"></label><br><br>
+            <button class="botoncitos" onclick="operacionesBasicas()">Calcular</button>
+            <button class="botoncitos" onclick="borrar4()">Borrar</button><br><br>
+            <label>Suma <input type="number" id="4suma" readonly></label><br><br>
+            <label>Resta <input type="number" id="4resta" readonly></label><br><br>
+            <label>Multiplicación <input type="number" id="4multiplicacion" readonly></label><br><br>
+            <label>División <input type="number" id="4division" readonly></label><br><br>
+
+            <script>
+                function operacionesBasicas() {
+                    let n1 = parseInt(document.getElementById("4primerNumero").value);
+                    let n2 = parseInt(document.getElementById("4segundoNumero").value);
+                    let s = n1 + n2;
+                    let r = n1 - n2;
+                    let m = n1 * n2;
+                    let d = n1 / n2;
+                    document.getElementById("4suma").value = s;
+                    document.getElementById("4resta").value = r;
+                    document.getElementById("4multiplicacion").value = m;
+                    document.getElementById("4division").value = d;
+                }
+
+                function borrar4() {
+                    document.getElementById("4primerNumero").value = "";
+                    document.getElementById("4segundoNumero").value = "";
+                    document.getElementById("4suma").value = "";
+                    document.getElementById("4resta").value = "";
+                    document.getElementById("4multiplicacion").value = "";
+                    document.getElementById("4division").value = "";
+                }
+            </script>
+
+            <hr>
+            <!--5. Calcular el volumen de una esfera.-->
+            <h2>5) Volumen de una esfera</h2>
+            <label>Radio <input type="number" id="5radio"></label><br><br>
+            <button class="botoncitos" onclick="esfera()">Calcular</button>
+            <button class="botoncitos" onclick="borrar5()">Borrar</button><br><br>
+            <label>Volumen <input type="number" id="5volumen" readonly></label><br><br>
+
+            <script>
+                function esfera() {
+                    let pi = 3.1416;
+                    let r5 = parseFloat(document.getElementById("5radio").value);
+                    let vol5 = (4 / 3) * pi * Math.pow(r5, 3);
+                    document.getElementById("5volumen").value = vol5;
+                }
+
+                function borrar5() {
+                    document.getElementById("5radio").value = "";
+                    document.getElementById("5volumen").value = "";
+                }
+            </script>
+
+            <hr>
+            <!--6. Convertir de pulgadas a centímetros (1” es igual a 2.54 cm)-->
+            <h2>6) Pulgadas a centímetros</h2>
+            <label>Pulgadas <input type="number" id="6pulgadas"></label><br><br>
+            <button class="botoncitos" onclick="conversion()">Convertir</button>
+            <button class="botoncitos" onclick="borrar6()">Borrar</button><br><br>
+            <label>Centímetros <input type="number" id="6centimetros" readonly></label><br><br>
+
+            <script>
+                function conversion() {
+                    let pulg = parseFloat(document.getElementById("6pulgadas").value);
+                    let cm = pulg * 2.54;
+                    document.getElementById("6centimetros").value = cm;
+                }
+
+                function borrar6() {
+                    document.getElementById("6pulgadas").value = "";
+                    document.getElementById("6centimetros").value = "";
+                }
+            </script>
+
+            <hr>
+            <!--7. Pedir una cantidad de segundos, mostrar como resultado a cuantas horas, minutos y segundos equivale (4000 segundos = 1 hrs 6 minutos 40 segundos)-->
+            <h2>7) Conversiones de tiempo</h2>
+            <label>Cantidad de segundos <input type="number" id="7Csegundos"></label><br><br>
+            <button class="botoncitos" onclick="conversionesTiempo()">Calcular</button>
+            <button class="botoncitos" onclick="borrar7()">Borrar</button><br><br>
+            <label>Horas <input type="number" id="7horas" readonly></label><br><br>
+            <label>Minutos <input type="number" id="7minutos" readonly></label><br><br>
+            <label>Segundos <input type="number" id="7segundos" readonly></label><br><br>
+
+            <script>
+                function conversionesTiempo() {
+                    let s = parseInt(document.getElementById("7Csegundos").value);
+                    let h = parseInt(s / 3600);
+                    s %= 3600;
+                    let m = parseInt(s / 60);
+                    s %= 60;
+                    document.getElementById("7horas").value = h;
+                    document.getElementById("7minutos").value = m;
+                    document.getElementById("7segundos").value = s;
+                }
+
+                function borrar7() {
+                    document.getElementById("7Csegundos").value = "";
+                    document.getElementById("7horas").value = "";
+                    document.getElementById("7minutos").value = "";
+                    document.getElementById("7segundos").value = "";
+                }
+            </script>
+
+            <hr>
+            <!--8. Calcular el volumen de un cilindro.-->
+            <h2>8) Volumen de un cilindro</h2>
+            <label>Radio <input type="number" id="8radio"></label><br><br>
+            <label>Altura <input type="number" id="8altura"></label><br><br>
+            <button class="botoncitos" onclick="cilindro()">Calcular</button>
+            <button class="botoncitos" onclick="borrar8()">Borrar</button><br><br>
+            <label>Volumen <input type="number" id="8volumen" readonly></label><br><br>
+
+            <script>
+                function cilindro() {
+                    let pi = 3.1416;
+                    let r8 = parseFloat(document.getElementById("8radio").value);
+                    let h8 = parseFloat(document.getElementById("8altura").value);
+                    let vol8 = pi * (r8 * r8) * h8;
+                    document.getElementById("8volumen").value = vol8;
+                }
+
+                function borrar8() {
+                    document.getElementById("8radio").value = "";
+                    document.getElementById("8altura").value = "";
+                    document.getElementById("8volumen").value = "";
+                }
+            </script>
+
+            <hr>
+            <!--9. Calcular el volumen de un cono.-->
+            <h2>9) Volumen de un cono</h2>
+            <label>Radio <input type="number" id="9radio"></label><br><br>
+            <label>Altura <input type="number" id="9altura"></label><br><br>
+            <button class="botoncitos" onclick="cono()">Calcular</button>
+            <button class="botoncitos" onclick="borrar9()">Borrar</button><br><br>
+            <label>Volumen <input type="number" id="9volumen" readonly></label><br><br>
+
+            <script>
+                function cono() {
+                    let pi = 3.1416;
+                    let r9 = parseFloat(document.getElementById("9radio").value);
+                    let h9 = parseFloat(document.getElementById("9altura").value);
+                    let vol9 = (pi * (r9 * r9) * h9) / 3;
+                    document.getElementById("9volumen").value = vol9;
+                }
+
+                function borrar9() {
+                    document.getElementById("9radio").value = "";
+                    document.getElementById("9altura").value = "";
+                    document.getElementById("9volumen").value = "";
+                }
+            </script>
+
+            <hr>
+            <!--10. Calcular el volumen de un cubo.-->
+            <h2>10) Volumen de un cubo</h2>
+            <label>Medida del lado <input type="number" id="10lado"></label><br><br>
+            <button class="botoncitos" onclick="cubo()">Calcular</button>
+            <button class="botoncitos" onclick="borrar10()">Borrar</button><br><br>
+            <label>Volumen <input type="number" id="10volumen" readonly></label><br><br><br>
+
+            <script>
+                function cubo() {
+                    let lado = parseFloat(document.getElementById("10lado").value);
+                    let vol10 = Math.pow(lado, 3);
+                    document.getElementById("10volumen").value = vol10;
+                }
+
+                function borrar10() {
+                    document.getElementById("10lado").value = "";
+                    document.getElementById("10volumen").value = "";
+                }
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

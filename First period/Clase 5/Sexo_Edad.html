@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let edad = prompt("Introduce tu edad");
+        let sexo = prompt("Introduce tu sexo (hombre/mujer)");
+        if (edad >= 18) {
+            //if(sexo=="H" || sexo=="h")
+            if (sexo.toLowerCase() == "hombre")
+                alert("Bienvenido");
+            else
+            //if(sexo=="M" || sexo=="m")
+            if (sexo.toLowerCase() == "mujer")
+                alert("Bienvenida");
+            else
+                alert("Sexo no válido");
+        } else {
+            alert("Acceso denegado");
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio 3</title>
+    <style>
+        body {
+            background: linear-gradient(#001848, #301860, #483078, #604878, #906090);
+        }
+        
+        #Everything {
+            background-color: #f3ffd2;
+            text-align: center;
+            margin-left: 300px;
+            margin-right: 300px;
+        }
+        
+        p {
+            font-family: 'Cabin', sans-serif;
+            font-weight: 300;
+            line-height: 1.3em;
+        }
+        
+        #Letritas {
+            font-family: 'Cabin', sans-serif;
+            font-weight: 300;
+            line-height: 1.3em;
+        }
+        
+        .botoncitos {
+            font-size: 15px;
+            color: black;
+            background-color: #ffccd1;
+            border-color: #001848;
+            border-width: 3px;
+            border-style: solid;
+        }
+        
+        .negrillas {
+            font-weight: bold;
+        }
+        
+        h1 {
+            color: #f60069;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 900;
+        }
+        
+        h2 {
+            color: #ff41a1;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="Everything">
+        <br>
+        <h1>Portafolio 3</h1>
+        <p class="negrillas">Alumna: Pérez González Nereyda Celestina</p>
+        <hr>
+
+        <!--1. El usuario introduce números (usando prompt) y deja de introducir al introducir un número negativo, mostrar la cantidad de números 
+pares y la cantidad de números impares (sin contar el número negativo).-->
+        <div id="Letritas">
+            <h2>Cantidad de números pares e impares</h2>
+            <label class="negrillas">Para introducir números, dé click en el botón "Aceptar":</label><br><br>
+            <button class="botoncitos" onclick="parImpar()">Aceptar</button>
+            <button class="botoncitos" onclick="borrar1()">Borrar</button><br><br>
+            <div id="divPar"></div>
+            <div id="divImpar"></div>
+
+            <script>
+                function parImpar() {
+                    let n1 = 0;
+                    let par = 0;
+                    let impar = 0;
+
+                    while (n1 >= 0) {
+                        n1 = parseInt(prompt("Ingresa un número, por favor: "));
+
+                        if (n1 % 2 == 0 && n1 > 0) {
+                            par++;
+                        } else {
+                            if (n1 % 2 > 0)
+                                impar++;
+                        }
+                    }
+
+                    document.getElementById("divPar").innerText = "Cantidad de números pares: " + par;
+                    document.getElementById("divImpar").innerText = "Cantidad de números impares: " + impar;
+                }
+
+                function borrar1() {
+                    document.getElementById("divPar").innerText = "";
+                    document.getElementById("divImpar").innerText = "";
+                }
+            </script>
+
+            <hr>
+
+            <!--2. El usuario introduce N números (usando prompt); cada que introduzca uno se le debe preguntar si desea introducir más (usando confirm). 
+Mostrar el número mayor y menor de todos los que introdujo.-->
+            <h2>Mayor y menor</h2>
+            <label class="negrillas">Para introducir los números, dé click en el botón "Aceptar":</label><br><br>
+            <button class="botoncitos" onclick="mayMenor()">Aceptar</button>
+            <button class="botoncitos" onclick="borrar2()">Borrar</button><br><br>
+            <label>Mayor <input type="number" id="mayor2" readonly></label>
+            <label>Menor <input type="number" id="menor2" readonly></label>
+
+
+            <script>
+                function mayMenor() {
+                    let may, men, n = NaN; //ban=false;
+                    do {
+                        n = parseFloat(prompt("Número"));
+                        //if(!ban)
+                        if (isNaN(men)) {
+                            may = n;
+                            men = n;
+                        } else {
+                            if (may < n) {
+                                may = n;
+                            } else if (men > n) {
+                                men = n;
+                            }
+                        }
+                        //ban=true;
+                    }
+                    while (confirm("¿Deseas continuar?"));
+                    document.getElementById("mayor2").value = may;
+                    document.getElementById("menor2").value = men;
+                }
+
+                function borrar2() {
+                    document.getElementById("mayor2").value = "";
+                    document.getElementById("menor2").value = "";
+                }
+            </script>
+
+            <hr>
+
+            <!--3. Calcular el sueldo mensual de 10 trabajadores en función de la siguiente información de cada trabajador: La cantidad de horas trabajadas 
+por día, el sueldo por hora, se considera el mes como 30 días. Al final deberá mostrar el monto total de sueldo de los 10 trabajadores así como
+el promedio del sueldo.-->
+            <h2>Sueldo mensual de 10 trabajadores</h2>
+            <label class="negrillas">Trabajador 1</label><br><br>
+            <label>Horas trabajadas por día: <input type="number" id="horas1"></label> <label>Sueldo por hora: <input type="number" id="sueldo1"></label><br><br>
+            <label class="negrillas">Trabajador 2</label><br><br>
+            <label>Horas trabajadas por día: <input type="number" id="horas2"></label> <label>Sueldo por hora: <input type="number" id="sueldo2"></label><br><br>
+            <label class="negrillas">Trabajador 3</label><br><br>
+            <label>Horas trabajadas por día: <input type="number" id="horas3"></label> <label>Sueldo por hora: <input type="number" id="sueldo3"></label><br><br>
+            <label class="negrillas">Trabajador 4</label><br><br>
+            <label>Horas trabajadas por día: <input type="number" id="horas4"></label> <label>Sueldo por hora: <input type="number" id="sueldo4"></label><br><br>
+            <label class="negrillas">Trabajador 5</label><br><br>
+            <label>Horas trabajadas por día: <input type="number" id="horas5"></label> <label>Sueldo por hora: <input type="number" id="sueldo5"></label><br><br>
+            <label class="negrillas">Trabajador 6</label><br><br>
+            <label>Horas trabajadas por día: <input type="number" id="horas6"></label> <label>Sueldo por hora: <input type="number" id="sueldo6"></label><br><br>
+            <label class="negrillas">Trabajador 7</label><br><br>
+            <label>Horas trabajadas por día: <input type="number" id="horas7"></label> <label>Sueldo por hora: <input type="number" id="sueldo7"></label><br><br>
+            <label class="negrillas">Trabajador 8</label><br><br>
+            <label>Horas trabajadas por día: <input type="number" id="horas8"></label> <label>Sueldo por hora: <input type="number" id="sueldo8"></label><br><br>
+            <label class="negrillas">Trabajador 9</label><br><br>
+            <label>Horas trabajadas por día: <input type="number" id="horas9"></label> <label>Sueldo por hora: <input type="number" id="sueldo9"></label><br><br>
+            <label class="negrillas">Trabajador 10</label><br><br>
+            <label>Horas trabajadas por día: <input type="number" id="horas10"></label> <label>Sueldo por hora: <input type="number" id="sueldo10"></label><br><br>
+            <button class="botoncitos" onclick="totalPromedio()">Aceptar</button>
+            <button class="botoncitos" onclick="borrar3()">Borrar</button><br><br>
+            <div id="montoTotal"></div>
+            <div id="promedio"></div>
+            <script>
+                function totalPromedio() {
+                    let hrs = [];
+                    let dinero = [];
+                    let total = 0;
+
+                    for (let i = 1; i <= 10; i++) {
+                        let h = parseInt(document.getElementById("horas" + i).value);
+                        let s = parseInt(document.getElementById("sueldo" + i).value);
+                        hrs.push(h);
+                        dinero.push(s);
+                    }
+
+                    for (let j = 0; j < 10; j++) {
+                        let salarioTotal = hrs[j] * dinero[j] * 30;
+                        total += salarioTotal;
+                    }
+
+                    let promedio = total / 10;
+
+                    document.getElementById("montoTotal").innerText = "El monto total del sueldo es: $" + total;
+                    document.getElementById("promedio").innerText = "El promedio del sueldo es: $" + promedio;
+                }
+
+                function borrar3() {
+                    document.getElementById("montoTotal").innerText = "";
+                    document.getElementById("promedio").innerText = "";
+                    document.getElementById("horas1").value = "";
+                    document.getElementById("horas2").value = "";
+                    document.getElementById("horas3").value = "";
+                    document.getElementById("horas4").value = "";
+                    document.getElementById("horas5").value = "";
+                    document.getElementById("horas6").value = "";
+                    document.getElementById("horas7").value = "";
+                    document.getElementById("horas8").value = "";
+                    document.getElementById("horas9").value = "";
+                    document.getElementById("horas10").value = "";
+                    document.getElementById("sueldo1").value = "";
+                    document.getElementById("sueldo2").value = "";
+                    document.getElementById("sueldo3").value = "";
+                    document.getElementById("sueldo4").value = "";
+                    document.getElementById("sueldo5").value = "";
+                    document.getElementById("sueldo6").value = "";
+                    document.getElementById("sueldo7").value = "";
+                    document.getElementById("sueldo8").value = "";
+                    document.getElementById("sueldo9").value = "";
+                    document.getElementById("sueldo10").value = "";
+                }
+            </script>
+
+            <hr>
+
+            <!--4. Mostrar en pantalla las tablas de multiplicar del 1 al 10, cada tabla va del 1 al 10.-->
+            <h2>Tablas de multiplicar del 1-10</h2>
+            <label class="negrillas">Para visualizar las tablas de multiplicar, dé click en el botón "Generar":</label><br><br>
+            <button class="botoncitos" onclick="tablas()">Generar</button>
+            <button class="botoncitos" onclick="borrar4()">Borrar</button><br><br>
+            <div id="divTablas"></div>
+
+            <script>
+                function tablas() {
+                    let todas = "";
+                    for (let j = 1; j <= 10; j++) {
+                        todas += "Tabla de multiplicar del " + j + "\n";
+                        for (let k = 1; k <= 10; k++) {
+                            let resultado4 = parseInt(j * k);
+                            todas += j + "x" + k + "=" + resultado4 + "\n";
+                        }
+                    }
+                    document.getElementById("divTablas").innerText = todas;
+                }
+
+                function borrar4() {
+                    document.getElementById("divTablas").innerText = "";
+                }
+            </script>
+
+
+            <hr>
+
+            <!--5. El usuario va a introducir la edad y el género del N personas (usando prompt), cada que se introduce una persona se le debe preguntar 
+si desea introducir más (usando confirm). Al final debe mostrar la cantidad de Hombres y mujeres mayores y menores de edad.-->
+            <h2>Género y edad de las personas</h2>
+            <label class="negrillas">Dé click en el botón "Aceptar" para ingresar los datos:</label><br><br>
+            <button class="botoncitos" onclick="genero()">Aceptar</button>
+            <button class="botoncitos" onclick="borrar5()">Borrar</button><br><br>
+            <label>Hombres mayores de edad: <input type="number" id="hombresMay" readonly></label><br><br>
+            <label>Hombres menores de edad: <input type="number" id="hombresMen" readonly></label><br><br>
+            <label>Mujeres mayores de edad: <input type="number" id="mujeresMay" readonly></label><br><br>
+            <label>Mujeres menores de edad: <input type="number" id="mujeresMen" readonly></label>
+
+            <script>
+                function genero() {
+                    let hMay = 0,
+                        hMen = 0,
+                        mMay = 0,
+                        mMen = 0;
+
+                    do {
+                        let e = parseInt(prompt("Edad"));
+                        let s = prompt("Sexo (h/m)").toLowerCase();
+
+                        if (e < 18) {
+                            if (s == "h") {
+                                hMen++;
+                            } else {
+                                mMen++;
+                            }
+                        } else if (s == "h") {
+                            hMay++;
+                        } else {
+                            mMay++;
+                        }
+                    }
+                    while (confirm("¿Deseas ingresar más?"));
+                    document.getElementById("hombresMay").value = hMay;
+                    document.getElementById("hombresMen").value = hMen;
+                    document.getElementById("mujeresMay").value = mMay;
+                    document.getElementById("mujeresMen").value = mMen;
+                }
+
+                function borrar5() {
+                    document.getElementById("hombresMay").value = "";
+                    document.getElementById("hombresMen").value = "";
+                    document.getElementById("mujeresMay").value = "";
+                    document.getElementById("mujeresMen").value = "";
+                }
+            </script>
+
+            <hr>
+
+            <!--6. Mostrar los primeros 100 números pares comenzando en el 2.-->
+            <h2>100 Números pares</h2>
+            <label class="negrillas">Dé click en el botón "Aceptar" para mostrar los primeros 100 números pares:</label><br><br>
+            <button class="botoncitos" onclick="pares()">Aceptar</button>
+            <button class="botoncitos" onclick="borrar6()">Borrar</button><br><br>
+            <div id="pares100"></div>
+
+            <script>
+                function pares() {
+                    let n6 = 2;
+
+                    for (let i = 1; i <= 100; i++) {
+                        document.getElementById("pares100").innerHTML += n6 + "<br>";
+
+                        n6 += 2;
+                    }
+                }
+
+                function borrar6() {
+                    document.getElementById("pares100").innerHTML = "";
+                }
+            </script>
+
+            <hr>
+
+            <!--7. Pedir al usuario un número e indicarle si es divisible entre 7, 5, 3 y 2. Ejemplo: 28 es divisible entre 7 y 2. 350 es divisible 
+entre 7, 5, 3 y 2.-->
+            <h2>Divisible entre 7, 5, 3 y/o 2</h2>
+            <label class="negrillas">Ingrese un número: <input type="number" id="numdiv"></label><br><br>
+            <button class="botoncitos" onclick="divisible()">Aceptar</button>
+            <button class="botoncitos" onclick="borrar7()">Aceptar</button><br><br>
+            <span id="7res"></span>
+
+            <script>
+                function divisible() {
+                    let n = parseInt(document.getElementById("numdiv").value);
+                    let s = "";
+
+                    if (n % 2 == 0) {
+                        s += "2, ";
+                    }
+
+                    if (n % 3 == 0) {
+                        s += "3, ";
+                    }
+
+                    if (n % 5 == 0) {
+                        s += "5, ";
+                    }
+
+                    if (n % 7 == 0) {
+                        s += "7,";
+                    }
+
+                    if (s == "") {
+                        document.getElementById("7res").innerText = n + " no es divisible entre 2,3,5 y 7.";
+                    } else {
+                        document.getElementById("7res").innerText = n + " es divisible entre " + s.substr(0, s.length - 1);
+                    }
+
+                }
+
+                function borrar7() {
+                    document.getElementById("7res").innerText = "";
+                }
+            </script>
+
+
+            <hr>
+
+            <!--8. Pedirle al usuario un número y mostrarle la suma de todos los números desde 1 hasta el número que introdujo. Ejemplo: 7 la suma es 28.-->
+            <h2>Suma desde 1 hasta el número introducido</h2>
+            <label class="negrillas">Ingrese un número: <input type="number" id="limite"></label><br><br>
+            <button class="botoncitos" onclick="sumaNumeros()">Calcular</button>
+            <button class="botoncitos" onclick="borrar8()">Borrar</button><br><br>
+            <div id="divSuma"></div>
+
+            <script>
+                function sumaNumeros() {
+                    let n8 = parseInt(document.getElementById("limite").value);
+                    let suma8 = 0;
+
+                    if (n8 > 0) {
+                        for (let i = 1; i <= n8; i++) {
+                            suma8 += i;
+                        }
+                        document.getElementById("divSuma").innerText = "La resultado de la suma es: " + suma8;
+                    } else {
+                        document.getElementById("divSuma").innerText = "Número inválido";
+                    }
+                }
+
+                function borrar8() {
+                    document.getElementById("limite").innerText = "";
+                    document.getElementById("divSuma").innerText = "";
+                }
+            </script>
+            <hr>
+        </div>
+    </div>
+</body>
+
+</html>

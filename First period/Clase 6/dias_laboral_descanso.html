@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <label>Escribe un número del 1 al 7 <input type="number" id="n"></label><br>
+    <button onclick="sem()">Aceptar</button>
+    <h1 id="mensaje"></h1>
+    <script>
+        function sem() {
+            let n = parseInt(document.getElementById("n").value);
+
+            switch (n) {
+                //Con esto se pueden agrupar varios casos para una misma salida.
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    document.getElementById("mensaje").innerText = "Día laboral";
+                    break;
+                case 6:
+                case 7:
+                    document.getElementById("mensaje").innerText = "Día de descanso";
+                    break;
+                default:
+                    document.getElementById("mensaje").innerText = "Día no válido";
+                    break;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

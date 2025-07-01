@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>Sexo<input type="string" id="sexo"></label><br>
+    <label>Edad <input type="string" id="edad"></label><br>
+    <button onclick="datos()">Aceptar</button><br>
+    <label>Aceptar <input type="string" id="aceptar" readonly></label><br>
+
+    <script>
+        function datos() {
+            let s = document.getElementById("sexo").value;
+            let ed = document.getElementById("edad").value;
+            //let opc1 = "Hola señor";
+            //  let edad = prompt("Introduce tu edad");
+            //   let sexo = prompt("Introduce tu sexo (hombre/mujer)")
+            if (ed >= 18 && s.toLowerCase() == "hombre") {
+                document.getElementById("aceptar").value = "Hola, señor";
+            }
+            if (ed < 18 && s.toLowerCase() == "hombre") {
+                document.getElementById("aceptar").value = "Hola, niño";
+            }
+            if (ed >= 18 && s.toLowerCase() == "mujer") {
+                document.getElementById("aceptar").value = "Hola, señora";
+            }
+            if (ed < 18 && s.toLowerCase() == "mujer") {
+                document.getElementById("aceptar").value = "Hola, niña";
+            }
+        }
+        /*
+            //if (sexo == "h" || sexo == "H") 
+            //.toLowerCase es para convertir a minúsculas.
+            if (s.toLowerCase() == "hombre") {
+                alert("Hola, señor");
+            } else
+            //Aquí se comprueba que tanto la letra mayúscula y minúscula de los sexos puede ser correcto, esto debido a que usamos or ||.
+            //if (sexo == "m" || sexo == "M") 
+            if (s.toLowerCase() == "mujer") {
+                alert("Hola, señora");
+            } else {
+                alert("Sexo no válido");
+            }
+        } else {
+            alert("Acceso denegado");
+        }
+        }*/
+    </script>
+</body>
+
+</html>

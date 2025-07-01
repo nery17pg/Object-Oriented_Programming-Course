@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>Escribe un número del 1 al 7 <input type="number" id="n"></label><br>
+    <button onclick="sem()">Aceptar</button>
+    <h1 id="mensaje"></h1>
+    <script>
+        function sem() {
+            let n = parseInt(document.getElementById("n").value);
+
+            switch (n) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    document.getElementById("mensaje").innerText = "Día laboral";
+                    break;
+                case 6:
+                case 7:
+                    document.getElementById("mensaje").innerText = "Día de descanso";
+                    break;
+                default:
+                    document.getElementById("mensaje").innerText = "Día no válido";
+                    break;
+            }
+        }
+
+        /*
+                case 3:
+                    document.getElementById("mensaje").innerText = "Miércoles";
+                    break;
+                case 4:
+                    document.getElementById("mensaje").innerText = "Jueves";
+                    break;
+                case 5:
+                    document.getElementById("mensaje").innerText = "Viernes";
+                    break;
+                case 6:
+                    document.getElementById("mensaje").innerText = "Sábado";
+                    break;
+                case 7:
+                    document.getElementById("mensaje").innerText = "Domingo";
+                    break;
+                default:
+                    document.getElementById("mensaje").innerText = "Día no válido";
+                    break;
+*/
+        /*if(n==1)
+        document.getElementById("mensaje").innerText="Lunes";
+      else if(n==2)
+        document.getElementById("mensaje").innerText="Martes";
+      else if(n==3)
+        document.getElementById("mensaje").innerText="Miércoles";
+      else if(n==4)
+        document.getElementById("mensaje").innerText="Jueves";
+      else if(n==5)
+        document.getElementById("mensaje").innerText="Viernes";
+      else if(n==6)
+        document.getElementById("mensaje").innerText="Sábado";
+      else if(n==7)
+        document.getElementById("mensaje").innerText="Domingo";
+      else
+        document.getElementById("mensaje").innerText="Día no válido";
+    }*/
+        /*     switch (n) {
+                 case 1:
+                     document.getElementById("mensaje").innerText = "Lunes";
+                     break;
+                 case 2:
+                     document.getElementById("mensaje").innerText = "Martes";
+                     break;
+                 case 3:
+                     document.getElementById("mensaje").innerText = "Miércoles";
+                     break;
+                 case 4:
+                     document.getElementById("mensaje").innerText = "Jueves";
+                     break;
+                 case 5:
+                     document.getElementById("mensaje").innerText = "Viernes";
+                     break;
+                 case 6:
+                     document.getElementById("mensaje").innerText = "Sábado";
+                     break;
+                 case 7:
+                     document.getElementById("mensaje").innerText = "Domingo";
+                     break;
+                 default:
+                     document.getElementById("mensaje").innerText = "Día no válido";
+                     break;
+             }*/
+    </script>
+
+</body>
+
+</html>

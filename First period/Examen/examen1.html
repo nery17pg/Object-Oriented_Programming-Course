@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen - Primera parcial</title>
+</head>
+
+<body>
+    <!--1.-Pedir una cantidad de elementos; crear un array con la cantidad que el usuario introduzca y llenarlo pidiéndole 
+        al usuario cada elemento usando la sentencia prompt, mostrar el array en un div. (2 puntos) Agregar un botón para 
+        que busque los números menor y mayor contenidos en el array y los muestre en 2 inputs. (2 puntos)-->
+    <h1>Array</h1>
+    <label>Ingrese la cantidad de elementos: <input type="number" id="datos"></label><br><br>
+    <button onclick="datos()">Crear array</button>
+    <button onclick="mayorMenor()">Mayor y menor</button><br><br>
+    <div id="res"></div>
+    <label>Mayor: <input type="number" id="mayor1" readonly></label><br><br>
+    <label>Menor: <input type="number" id="menor1" readonly></label>
+
+    <script>
+        function datos() {
+            let datos = parseInt(document.getElementById("datos").value);
+            let arreglo = new Array(datos);
+
+            document.getElementById("res").innerHTML = "";
+            //alert(arreglo.length);
+
+            for (let i = 0; i < arreglo.length; i++) {
+                //La "i" aquí es la variable dentro del ciclo
+                arreglo[i] = prompt("Escribe algo:");
+                document.getElementById("res").innerHTML += arreglo[i] + "<br>";
+            }
+        }
+
+        function mayorMenor() {
+            let datos = parseInt(document.getElementById("datos").value);
+            let arreglo = new Array(datos);
+
+            document.getElementById("res").innerHTML = "";
+
+            for (let i = 0; i < arreglo.length; i++) {
+                //La "i" aquí es la variable dentro del ciclo
+                arreglo[i] = prompt("Escribe algo:");
+                document.getElementById("res").innerHTML += arreglo[i] + "<br>";
+            }
+            /* for (let i = 0; i < 10; i++) {
+                 numeros10[i] = parseFloat(prompt("Ingrese el número: "));
+             }*/
+            let mayor = arreglo[0];
+            let menor = arreglo[0];
+            for (let j = 0; j < arreglo.length; j++) {
+                if (arreglo[j] > mayor) {
+                    mayor = arreglo[j];
+                }
+            }
+            document.getElementById("mayor1").value = mayor;
+            for (let j = 0; j < arreglo.length; j++) {
+                if (arreglo[j] < menor) {
+                    menor = arreglo[j];
+                }
+            }
+            document.getElementById("menor1").value = menor;
+        }
+    </script>
+
+    <hr>
+
+    <!--2.-Calcular el volumen de un cono (usar un input para el radio y otro para la altura). (2 puntos)-->
+    <h1>Volumen de un cono</h1>
+    <label>Radio: <input type="number" id="radio"></label><br><br>
+    <label>Altura: <input type="number" id="altura"></label><br><br>
+    <button onclick="volumenCono()">Aceptar</button><br><br>
+    <label>El volumen del cono es: <input type="number" id="volumenC" readonly></label>
+
+    <script>
+        function volumenCono() {
+            let pi = 3.1416;
+            let r2 = parseFloat(document.getElementById("radio").value);
+            let h2 = parseFloat(document.getElementById("altura").value);
+            let vol = (pi * (r2 * r2) * h2) / 3;
+            document.getElementById("volumenC").value = vol;
+
+        }
+    </script>
+
+    <hr>
+
+    <!--3.-Una tienda tiene en oferta memorias SD, los precios de las memorias son los siguientes:
+16GB   $90.00
+32GB  $170.00
+64GB  $250.00
+Cada persona puede comprar la cantidad que desee de cada una de las memorias, si el monto final de la compra está entre $200.00 y 
+$400.00 se hace un descuento del 5%; si el monto final está entre $401.00 y $600.00 obtiene un 8% de descuento y si el monto final 
+es superior a $600 obtiene un 10% de descuento, si el monto es menor de $200 no se aplica ningún porcentaje de descuento.
+Crear inputs para pedir la cantidad de cada una de las memorias que se van a comprar, mostrar el monto final, el porcentaje de descuento 
+que se va a aplicar y el monto final con el descuento aplicado. (2 puntos)-->
+    <h1>Tienda de memorias USD</h1>
+    <label>Cantidad de memorias de 16GB: <input type="number" label="usb16"></label><br><br>
+    <label>Cantidad de memorias de 32GB: <input type="number" label="usb32"></label><br><br>
+    <label>Cantidad de memorias de 64GB: <input type="number" label="usb64"></label><br><br>
+    <button onclick="tiendaUSB()">Aceptar</button><br><br>
+    <div id="divResultados"></div>
+
+
+    <script>
+        document.getElementById("divResultados").innerHTML = "";
+
+        function tiendaUSB() {
+            let m16 = parseInt(document.getElementById("usb16").value);
+            let m32 = parseInt(document.getElementById("usb32").value);
+            let m64 = parseInt(document.getElementById("usb64").value);
+
+            let m1 = m16 * 90;
+            let m2 = m32 * 170;
+            let m3 = m64 * 250;
+
+            let monto = m1 + m2 + m3;
+
+            if (monto >= 200 && monto <= 400) {
+                let descuento = monto * 0.05;
+                let p = monto - descuento;
+                document.getElementById("divResultados").innerHTML = "El precio es: " + monto + "Se aplicó un descuento del 5%, lo cual importa " + descuento + " El precio con descuento es: " + p;
+            } else if (monto >= 401 && monto <= 600) {
+                let descuento = monto * 0.08;
+                let p = monto - descuento;
+                document.getElementById("divResultados").innerHTML = "El precio es: " + monto + "Se aplicó un descuento del 8%, lo cual importa " + descuento + " El precio con descuento es: " + p;
+            } else if (monto > 600) {
+                let descuento = monto * 0.10;
+                let p = monto - descuento;
+
+                document.getElementById("divResultados").innerHTML = "El precio es: " + monto + "Se aplicó un descuento del 10%, lo cual importa " + descuento + " El precio con descuento es: " + p;
+            } else if (monto < 200) {
+
+                document.getElementById("divResultados").innerHTML = "El precio es: " + monto + "No se aplicó ningún descuento";
+
+            }
+        }
+    </script>
+
+
+    <!--4.-Calcular el sueldo mensual de un empleado de acuerdo a las siguientes consideraciones: sueldo base mensual, horas extras, 
+        monto pagado por hora extra (pedir cada uno de estos datos en inputs). El sueldo final debe ser calculado de la siguiente manera:
+         El sueldo base más el monto de las horas extra, al monto final aplicarle el impuesto de ISR del 28% (2 puntos).-->
+    <h1>Sueldo mensual de un empleado</h1>
+    <label>Sueldo mensual base: <input type="number" id="sueldo"></label><br><br>
+    <label>Horas extras: <input type="number" id="horas"></label><br><br>
+    <label>Monto pagado por hora extra: <input type="number" id="monto"></label><br><br>
+    <button onclick="sueldoMensual()">Calcular</button><br><br>
+    <label>Sueldo mensual final: <input type="number" id="sueldoFinal" readonly></label>
+
+    <script>
+        function sueldoMensual() {
+
+            let sueldoMes = parseInt(document.getElementById("sueldo").value);
+            let horasExtras = parseInt(document.getElementById("horas").value);
+            let montoPagado = parseInt(document.getElementById("monto").value);
+
+            let horasT = (horasExtras * montoPagado);
+            let montoF = (sueldoMes + horasT);
+            let ISR = montoF * .28;
+            let sueldoF = (montoF - ISR);
+
+            document.getElementById("sueldoFinal").value = sueldoF;
+        }
+    </script>
+
+</body>
+
+</html>
