@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body onresize="windowInfo()" onload="windowInfo()">
+  <button onclick="newWindow()">Abrir ventana</button>
+  <button onclick="navigate()">Ir</button> 
+  <button onclick="windowClose()">Cerrar ventana</button>
+  <button onclick="screenInfo()">Información pantalla</button>
+  <button onclick="destroy()">Autodestrucción</button>
+  <button onclick="stopAuto()">Detener autodestrucción</button>
+  <button onclick="createCookie()">Crear cookie</button>
+  <button onclick="readCookie()">Leer cookie</button>
+  <button onclick="editCookie()">Modificar cookie</button>
+  <button onclick="deleteCookie()">Eliminar cookie</button>
+  <button onclick="expiresCookie()">Expirar cookie</button>
+  <h1 id="dimensiones"></h1>
+  <div id="infoPantalla"></div>
+<script>
+function newWindow(){
+  window.open("ej14.html");
+}
+function navigate(){
+  window.location="ej13.html";
+}
+function windowInfo(){
+  document.getElementById("dimensiones").innerText=window.innerWidth+"x"+window.innerHeight;
+}
+function windowClose(){
+  window.close();
+}
+function screenInfo(){
+  let div=document.getElementById("infoPantalla");
+  div.innerHTML="";
+  div.innerHTML+= `<b>Ancho</b> ${window.screen.width}<br>`;
+  div.innerHTML+="<b>Alto</b> "+window.screen.height+"<br>";
+  div.innerHTML+="<b>Ancho disponible</b> "+window.screen.availWidth+"<br>";
+  div.innerHTML+="<b>Alto disponible</b> "+window.screen.availHeight+"<br>";
+  div.innerHTML+="<b>Profundidad de color</b> "+window.screen.colorDepth+"<br>";
+}
+let to,ti;
+let secs;
+function destroy(){
+  to=window.setTimeout(kill,5000);
+  secs=5;
+  tiempo();
+  ti=window.setInterval(tiempo,1000);
+}
+function kill(){
+  document.write("")
+  window.clearInterval(ti);
+}
+function stopAuto(){
+  window.clearTimeout(to);
+  window.clearInterval(ti);
+}
+function tiempo(){
+  let h1Secs=document.getElementById("seconds");
+  h1Secs.innerText=secs;
+  secs--;
+}
+function createCookie(){
+  document.cookie="userName=RValadez";
+}
+function readCookie(){
+  let c=document.cookie;
+  let pc=document.getElementById("pCookie");
+  pc.innerText=c;
+}
+function editCookie(){
+  document.cookie="userName=Asura";
+}
+function deleteCookie(){
+  document.cookie="userName=";
+}
+function expiresCookie(){
+  let fech=new Date();
+  fech.setTime(fech.getTime()+3000);
+  document.cookie="userName=;expires="+fech.toUTCString();
+}
+</script>
+<h1 id="seconds" style="color: red; font-size: 150px; text-align: center;"></h1>
+<p id="pCookie"></p>
+</body>
+</html>

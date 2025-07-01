@@ -1,0 +1,152 @@
+<!DOCTYPE html> <!--PRIMER ELEMENTO = GRANDFATHER -->
+<html lang="es">
+<head> <!--FATHER-->
+    <meta charset="UTF-8"> <!--SON-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--SON-->
+    <title>Clasesita 1</title> <!--SON-->
+    <style> /*SON*/
+        .verde{
+            background-color: green;
+            color:white;
+        }
+    </style>
+    <!--Entre ellos vendrían siendo hermanos, es decir, "SIBLINGS"-->
+</head>
+<body> <!--FATHER-->
+    <!--ELEMENTOS HTML-->
+    <input type="text" id="txt"><br>
+    <input type="color" name="" id=""><br>
+    <input type="number"><br>
+    <input type="search"><br>
+    <input type="range"><br>
+    <input type="checkbox"><br>
+    <input type="radio"><br>
+    <input onclick="getClass()" type="button" value="Botón input" class="verde"><br><br>
+    <button onclick="getElements()" class="verde">Seleccionar</button><br><br>
+    <button onclick="poner()">Poner</button>  <button onclick="quitar()">Quitar</button><br><br>
+    <button onclick="agregar()">Crear</button>
+    <input type="text" id="nElemento"> <button onclick="remover()">Eliminar</button>
+    <button onclick="insertarAntes()">Insertar antes</button>
+    <button onclick="reemplazar()">Reemplazar</button>
+    <button onclick="antes()">Insertar antes</button>
+    <button onclick="despues()">Insertar después</button>
+    <button onclick="insertarInicio()">Insertar al inicio</button>
+    <button onclick="insertarFinal()">Insertar al final</button>
+    <div id="elements"></div> <!--Aquí salen todos los circulos-->
+    <p class="verde">Venustiano Carranza</p>
+
+    <script>
+    function getElements(){
+        let objs=document.getElementsByTagName("input"); //Aquí tengo todos los elementos
+        document.getElementById("elements").innerHTML=""; //Aquí limpiamos lo que aparezca
+        for(let i=0;i<objs.length;i++){
+            document.getElementById("elements").innerHTML+=objs[i].type+"<br>"; //El 'type' está leyendo la propiedad de type de los inputs
+        }
+    }
+
+    function getClass(){
+        let objs=document.getElementsByClassName("verde"); //Con esto tenemos todos los elementos de la clase "verde"
+        for(let i=0;i<objs.length;i++){ //Length es la longitud de todos los elementos
+            objs[i].style.backgroundColor="blue";
+        }
+    }
+    function poner(){
+        document.getElementById("txt").setAttribute("readonly", true); //Con esto podemos escribir y luego ya no
+        document.getElementById("txt").setAttribute("class", "verde"); //Pertenece a la clase y se le cambia el color
+    }
+    function quitar(){
+        document.getElementById("txt").removeAttribute("readonly"); //Aquí volvemos a poder escribir
+    }
+
+    /*FUNCIONES PARA LAS ANIMACIONES DE CÍRCULOS*/
+    let dn=1; //Variable para inicializar la cuenta
+    function mensaje(e){
+        alert("Estoy vivo, soy en div" + e.target.innerText);
+    }
+    function colorAzul(e){
+        e.target.style.backgroundColor="blue";
+    }
+    function colorRojo(e){
+        e.target.style.backgroundColor="red";
+    }
+    function crear(){
+        let div=document.createElement("div"); //Este elemento todavía no existe
+        div.style.width="100px";
+        div.style.height="100px";
+        div.style.backgroundColor="red";
+        div.style.borde="1px solid black";
+        div.style.borderRadius="50%";
+        div.innerText=dn; //Para ponerle texto dentro
+        dn++; //Va aumentando de 1 en 1
+        div.style.fontSize="50px";
+        div.style.color="white";
+        div.addEventListener("click",  mensaje); //Primero se pone el evento que va a activar y después la función enlazada
+        div.addEventListener("mouseenter",  colorAzul); //Cambia a rojo con click
+        div.addEventListener("mouseleave",  colorRojo);  //Cambia a azul con pasar el mouse
+        return div; //Al crear la función crear() me arroja un div, que es donde aparece el círculo
+    }
+    function agregar(){
+        let divNuevo=crear();
+        document.getElementById("elements").appendChild(divNuevo); //Aquí tomé lo que está en la función crear()
+        /*let div=document.createElement("div"); //Este elemento todavía no existe
+        div.style.width="100px";
+        div.style.height="100px";
+        div.style.backgroundColor="red";
+        div.style.borde="1px solid black";
+        div.style.borderRadius="50%";
+        div.innerText=dn;
+        dn++;
+        div.style.fontSize="50px";
+        div.style.color="white";*/
+    }
+    function remover(){
+        let d=document.getElementById("elements").getElementsByTagName("div");
+        document.getElementById("elements").removeChild(d[parseInt(document.getElementById("nElemento").value)]); //Se pasa el nodo que queremos remover
+    }
+    function insertarAntes(){
+        let divNuevo=crear();
+        //Aquí lo que hicimos fue llamar a los elementos de la variable de los círculos. En la segunda parte pusimos la propiedad de insertar antes,
+        //trayendo todas las características que tenemos en la función crear(). Y lo agregamos antes del elemento que colocamos en el input "nElemento".
+        //Por ello llamamos a ese input para saber dónde deseamos que se ponga ese elemento.
+        let d=document.getElementById("elements").getElementsByTagName("div");
+        let divHermano=d[parseInt(document.getElementById("nElemento").value)];
+        document.getElementById("elements").insertBefore(divNuevo,divHermano); //divnuevo=nodo a insertar y divHermano=nodo antes del cual se inserta
+    }
+    function reemplazar(){
+        let divNuevo=crear();
+        divNuevo.style.backgroundColor="purple";
+        let d=document.getElementById("elements").getElementsByTagName("div");
+        let divViejo=d[parseInt(document.getElementById("nElemento").value)];
+        document.getElementById("elements").replaceChild(divNuevo, divViejo); //Primero ponemos el elemento que vamos a reemplazar y después con el que lo vamos a reemplazar
+    }
+
+    //ELEMENTOS
+    function antes(){ //La diferencia es que con esto sé que elemento quiero trabajar
+        let divNuevo=crear();
+        divNuevo.style.backgroundColor="purple";
+        let d=document.getElementById("elements").getElementsByTagName("div");
+        let divHermano=d[parseInt(document.getElementById("nElemento").value)];
+        divHermano.before(divNuevo);
+    }
+    function despues(){ 
+        let divNuevo=crear();
+        divNuevo.style.backgroundColor="purple";
+        let d=document.getElementById("elements").getElementsByTagName("div");
+        let divHermano=d[parseInt(document.getElementById("nElemento").value)];
+        divHermano.after(divNuevo);
+    }
+    function insertarInicio(){
+        let divNuevo=crear();
+        divNuevo.style.backgroundColor="yellow";
+        let divPadre=document.getElementById("elements");
+        divPadre.prepend(divNuevo);
+    }
+    function insertarFinal(){
+        let divNuevo=crear();
+        divNuevo.style.backgroundColor="yellow";
+        let divPadre=document.getElementById("elements");
+        divPadre.append(divNuevo);
+    }
+    </script>
+</body>
+</html>

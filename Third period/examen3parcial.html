@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen 3ra. Parcial</title>
+</head>
+<body onload="contador()">
+    <h1 id="h1Tiempo" style="color: black"></h1>
+    <h1>Denos clases en los siguientes semestres, no le hace que llore en sus exámenes. Gracias por ser tan buen profe.</h1>
+
+    <button onclick="crearT()">Crear título</button>
+    <button onclick="crearST()">Crear subtítulo</button>
+    <button onclick="crearP()">Crear párrafo</button><br><br>
+    <input type="text" id="texto"><br><br>
+    <button onclick="reemT()">Reemplazar título</button>
+    <button onclick="reemST()">Reemplazar subtítulo</button>
+    <button onclick="reemP()">Reemplazar párrafo</button><br><br>
+    <div id="divCont"></div>
+    <script>
+/*Agregar un H1, en el se debe mostrar el tiempo que hemos pasado desde que se 
+cargó la página en horas minutos y segundos (hh:mm:ss) (2 puntos)*/  
+    let interval, hrs=0, min=0, seg=0;
+            
+            function contador(){
+                hrs=0;
+                min=0;
+                seg=0;
+                estancia();
+                ti=window.setInterval(estancia,1000);
+            }
+            function estancia(){
+                let tiempo;
+                let segundero=document.getElementById("segundos");
+                
+                if(tiempo<59){
+                    segundero.innerText=""+hrs+": "+min+": "+tiempo;
+                    tiempo++;
+                }
+                else{
+                    tiempo=0;
+                    if(min<59){
+                        min=min++;
+                        segundero.innerText=""+hrs+": "+min+": "+tiempo;
+                    }
+                    else{
+                        min=0;
+                        if(hrs<23){
+                            hrs=hrs++;
+                            segundero.innerText=""+hrs+": "+min+": "+tiempo;
+                        }
+                        else{
+                            hrs=0;
+                            segundero.innerText=""+hrs+": "+min+": "+tiempo;
+                            }
+                        }
+                }
+            }
+
+//Ejercicio 1: LLORO, no me jaló, pipipi
+//Ejercicio 2: Check
+//Ejercicio 3: 1/2 No me deja solo uno seleccionado
+//Ejercicio 4: Se hizo lo que se pudo
+//Ejercicio 5: A ver qpd
+
+    function crearT(){
+            let tit=document.createElement("h1");
+            let divCont=document.getElementById("divCont");
+            let texto=document.getElementById("texto").value;
+            tit.innerText=texto;
+            divCont.appendChild(tit);
+
+            tit.addEventListener("mouseenter", cuandoSobres);
+            tit.addEventListener("mouseleave", cuandoDeja);
+            tit.addEventListener("mousedown", elegido);
+        }
+    function crearST(){
+            let subtit=document.createElement("h2");
+            let divCont=document.getElementById("divCont");
+            let texto=document.getElementById("texto").value;
+            subtit.innerText=texto;
+            divCont.appendChild(subtit);
+
+            subtit.addEventListener("mouseenter", cuandoSobres);
+            subtit.addEventListener("mouseleave", cuandoDeja);
+            subtit.addEventListener("mousedown", elegido);
+        }
+    function crearP(){
+            let parrafo=document.createElement("p");
+            let divCont=document.getElementById("divCont");
+            let texto=document.getElementById("texto").value;
+            parrafo.innerText=texto;
+            texto++;
+            divCont.appendChild(parrafo);
+
+            parrafo.addEventListener("mouseenter", cuandoSobres);
+            parrafo.addEventListener("mouseleave", cuandoDeja);
+            parrafo.addEventListener("mousedown", elegido);
+        }
+        
+    function reemT(){
+        let divNuevo=crearT();
+        let texto=document.getElementById("texto").value;
+        let d=document.getElementById("divCont").getElementsByTagName("div");
+        let divViejo=d[parseInt(document.getElementById("selecElemento").value)];
+        document.getElementById("divCont").replaceChild(divNuevo, divViejo);
+        }
+    function reemST(){
+            let divNuevo=crearST();
+            let texto=document.getElementById("texto").value;
+            let d=document.getElementById("divCont").getElementsByTagName("div");
+            let divViejo=d[parseInt(document.getElementById("selecElemento").value)];
+            document.getElementById("divCont").replaceChild(divNuevo, divViejo);
+        }
+    function reemP(){
+            let div=document.createElement("div");
+            let divNuevo=crearP();
+            let texto=document.getElementById("texto").value;
+            let d=document.getElementById("divCont").getElementsByTagName("div");
+            let divViejo=d[parseInt(document.getElementById("selecElemento").value)];
+            document.getElementById("divCont").replaceChild(divNuevo, divViejo);
+        }
+
+    function cuandoSobres(e){
+        e.target.style.backgroundColor="black";
+        e.target.style.color="white";
+    }
+
+    function cuandoDeja(e){
+        e.target.style.backgroundColor="";
+        e.target.style.color="";
+    }
+
+    function elegido(e){
+        e.target.style.border="2px solid red";
+    }
+
+
+    function reemplazar(){
+        let divNuevo=crearT();
+        let divCont=document.getElementById("divCont");
+        let d=document.getElementById("elements").getElementsByTagName("div");
+        let divViejo=d[parseInt(document.getElementById("nElemento").value)];
+        document.getElementById("elements").replaceChild(divNuevo, divViejo); 
+    }
+
+
+    //ÚLTIMO EJERCICIO
+    let ti;
+    let segundos;
+    function arranca(){
+        let div5=document.getElementById("ejercicio5");
+        div5.style.height="100px";
+        div5.style.width="0px";
+        div5.style.backgroundColor="purple";
+        let divCon=document.getElementById("divCont");
+    }
+
+    function tiempo(){ 
+        let  h1Secs=document.getElementById("seconds"); 
+        h1Secs.innerText=secs;
+        secs--; 
+    }
+    
+
+
+/* además pueden ser seleccionados 
+al dar click sobre ellos (sólo uno puede estar seleccionado al mismo tiempo), se debe identificar el elemento 
+seleccionado al pintar un borde color rojo en él (2 puntos).*/
+
+/*Al presionar algún botón "reemplazar" se debe cambiar el elemento seleccionado por el elemento que indique 
+el botón al que se le hizo click y con el texto del input (2 puntos).*/
+
+/*Agregar un input tipo number, un botón "iniciar", debajo de ellos un div de 100 pixeles de altura, 0 pixeles de anchura 
+y el color de fondo de su preferencia. Cuando se de click en el botón el div debe aumentar su anchura en 10 píxeles cada 
+cuarto de segundo hasta alcanzar la anchura especificada en el input. (2 puntos)*/
+
+
+    </script>
+
+    <input type="number"> 
+    <button onclick="arranca()">Iniciar</button>
+    <div id="ejercicio5" style="height: 100px; width: 0px; background-color: purple;"></div>
+
+</body>
+</html>

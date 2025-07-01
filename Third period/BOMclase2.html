@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+</head>
+<body onresize="windowInfo()" onload="windowInfo()"> <!--Evento (onresize) que se dispara cuando el tamaño cambia y onload aparece en cuanto carga-->
+    <button onclick="newWindow()">Abrir ventana</button>
+    <button onclick="navigate()">Ir</button>
+    <button onclick="windowClose()">Cerrar</button>
+    <button onclick="screenInfo()">Información pantalla</button>
+    <button onclick="destroy()">Autodestrucción</button>
+    <button onclick="stopAuto()">Detener destrucción</button>
+    <button onclick="createCookie()">Crear cookie</button>
+    <button onclick="readCookie()">Leer cookie</button>
+    <button onclick="editCookie()">Editar cookie</button>
+    <button onclick="deleteCookie()">Eliminar cookie</button>
+    <button onclick="expiresCookie()">Expirar cookie</button>
+
+    <h1 id="dimensiones"></h1>
+    <div id="infoPantalla"></div>
+
+<script>
+    //PÁGINA
+    function newWindow(){
+        window.open("BOMclase2.html"); //Solo se puede cerrar a sí mismo porque está pendejo
+        //window.open("https://www.ucol.mx"); //Nos abre la ventana con ese link
+        //location.href="https://www.youtube.com";  //Abre en la misma ventana
+    }
+
+    function navigate(){
+        window.location="ejercicio1.html";
+    }
+    
+    function windowInfo(){
+        document.getElementById("dimensiones").innerText=window.innerWidth+"x"+window.innerHeight;
+    }
+
+    function windowClose(){
+        window.close();
+    }
+
+    //WINDOW.SCREEN - ANCHO DE LA PANTALLA
+    function screenInfo(){
+        let div=document.getElementById("infoPantalla");
+        div.innerHTML="";
+        div.innerHTML+="<b>Ancho</b> "+window.screen.width+"<br>";
+        div.innerHTML+="<b>Alto</b> "+window.screen.height+"<br>";
+        div.innerHTML+="<b>Ancho disponible</b> "+window.screen.availWidth+"<br>";
+        div.innerHTML+="<b>Alto disponible</b> "+window.screen.availHeight+"<br>";
+        div.innerHTML+="<b>Profundidad de color</b> "+window.screen.colorDepth+"<br>";
+    }
+
+    //VARIABLES GLOBALES
+    let to, ti; //time out y time interval
+    let secs; //declaramos la variable de segundos
+
+    function destroy(){
+        //window.setTimeout(function(){document.write("")}, 5000); //Primero se pone la función y después el tiempo, aquí es milisegundos
+        to=window.setTimeout(kill,5000);
+        secs=5; //El valor de la variable secs es 5
+        tiempo(); //Aquí llamamos la función tiempo()
+        ti=window.setInterval(tiempo,1000); //El intervalo será de 1000 milisegundos, que vendría siendo 1 segundos, y tiempo es la función. Entonces le decimos "la función tiempo se va a ejecutar cada segundo"
+    }
+    function kill(){
+        document.write("");
+        window.clearInterval(ti); //Después de la destrucción paramos el intervalo o temporizador, para que no nos marque error
+    }
+
+    function stopAuto(){
+        window.clearTimeout(to);
+        window.clearInterval(ti); //Aquí igual para que no nos dé en la consola errores
+    }
+    function tiempo(){ //Esta función pone el valor del tiempo que falta y nos va a ayudar a reflejar los segundos en la pantalla
+        let  h1Secs=document.getElementById("seconds"); //Aquí declaramos una variable que será el valor del h1 puesto abajo
+        h1Secs.innerText=secs; //Transformamos la variable a texto
+        secs--; //secs-1, esto para que el reloj o la cuenta vaya de manera regresiva 
+    }
+
+    /*CREACIÓN Y MANEJO DE COOKIES*/
+    function createCookie(){ //Crear cookie aquí
+        document.cookie="userName=KNamjoon"; //El user de esto es el que está entre comillas y su nombre
+    }
+    function readCookie(){
+        let c=document.cookie;
+        let pc=document.getElementById("pCookie");
+        pc.innerText=c;
+    }
+    function editCookie(){
+        document.cookie="userName=Taehyung";
+    }
+    function deleteCookie(){
+        document.cookie="userName=";
+    }
+    function expiresCookie(){
+        let fech=new Date();
+        //let p=document.getElementById("pCookie");
+        fech.setTime(fech.getTime()+3000);
+        //p.innerText=fech.toUTCString();
+        document.cookie="userName=;expires="+fech.toUTCString();
+
+    }
+</script>
+<h1 id="seconds" style="color: orangered; font-size:150px; text-align:center;"></h1> <!--H1 del marcador, este se puede poner donde queramos-->
+<p id="pCookie"></p>
+</body>
+</html>

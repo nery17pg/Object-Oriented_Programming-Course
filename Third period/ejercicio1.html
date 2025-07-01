@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio</title>
+</head>
+<body>
+    <button onclick="crear()">Crear</button>
+    <div id="divCont"></div>
+    
+<script>
+function crear(){
+    let divObj=document.createElement("div");
+    divObj.style.width="100px";
+    divObj.style.height="100px";
+    divObj.style.backgroundColor="black";
+    divObj.style.border="1px solid black";
+    divObj.style.margin="10px";
+    divObj.style.display="inline-block"; //Con esto los div se van hacia la derecha
+    divObj.addEventListener("mousedown", divPresionado);
+    let divCon=document.getElementById("divCont");
+    divCon.appendChild(divObj); //Con esto se van agregando todos los divs al cuadrito
+}
+
+//FUNCIÓN GENÉRICA
+function divPresionado(e){  //La "e" es un parámetro
+    switch(e.button){
+        case 0: 
+            e.target.style.backgroundColor="red";
+        break;
+        case 1: 
+            e.target.style.backgroundColor="green";
+        break;
+        case 2: 
+            e.target.style.backgroundColor="blue"; //"target" trae el objeto que disparó el evento
+        break;
+    }    
+}
+/*¿Qué es e.target?
+e.target es una propiedad del objeto de evento e que hace referencia al elemento DOM en el que se originó el evento. 
+En otras palabras, e.target apunta al elemento que fue clicado.*/
+
+/*EXPLICACIÓN EXTRA EN CASO DE TENER JS APARTE
+document.onload()=function(){   //Lo que esto va a hacer es disparar las soluciones
+document.getElementById("btnCrear").addEventListener("click", crear());
+}
+function crear(){
+
+}
+*/
+</script>
+</body>
+</html>
